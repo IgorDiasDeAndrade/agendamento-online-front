@@ -152,11 +152,20 @@ const Register = () => {
               <Typography sx={{ color: 'text.secondary' }}>Make your app management easy and fun!</Typography>
             </Box>
             <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-              <CustomTextField autoFocus fullWidth sx={{ mb: 4 }} label='Username' placeholder='johndoe' />
-              <CustomTextField fullWidth label='Email' sx={{ mb: 4 }} placeholder='user@email.com' />
+              <CustomTextField autoFocus fullWidth sx={{ mb: 4 }} label='Cliente' placeholder='Hospital de exemplo' />
+              <CustomTextField
+                autoFocus
+                fullWidth
+                sx={{ mb: 4 }}
+                label='Nome completo'
+                placeholder='José Rodrigues Fernandes'
+              />
+              <CustomTextField autoFocus fullWidth sx={{ mb: 4 }} label='Nome de usuário' placeholder='joserodrigues' />
+              <CustomTextField autoFocus fullWidth sx={{ mb: 4 }} label='Telefone' placeholder='(21) 9 9999-9999' />
+              <CustomTextField fullWidth label='E-mail' sx={{ mb: 4 }} placeholder='example@email.com' />
               <CustomTextField
                 fullWidth
-                label='Password'
+                label='Senha'
                 id='auth-login-v2-password'
                 type={showPassword ? 'text' : 'password'}
                 InputProps={{
@@ -178,21 +187,21 @@ const Register = () => {
                 sx={{ mb: 4, mt: 1.5, '& .MuiFormControlLabel-label': { fontSize: theme.typography.body2.fontSize } }}
                 label={
                   <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-                    <Typography sx={{ color: 'text.secondary' }}>I agree to</Typography>
+                    <Typography sx={{ color: 'text.secondary' }}>Eu aceito as</Typography>
                     <Typography component={LinkStyled} href='/' onClick={e => e.preventDefault()} sx={{ ml: 1 }}>
-                      privacy policy & terms
+                      política e termos de privacidade
                     </Typography>
                   </Box>
                 }
               />
               <Button fullWidth type='submit' variant='contained' sx={{ mb: 4 }}>
-                Sign up
+                Cadastrar
               </Button>
               <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-                <Typography sx={{ color: 'text.secondary', mr: 2 }}>Already have an account?</Typography>
+                {/* <Typography sx={{ color: 'text.secondary', mr: 2 }}>Already have an account?</Typography>
                 <Typography component={LinkStyled} href='/login'>
                   Sign in instead
-                </Typography>
+                </Typography> */}
               </Box>
               <Divider
                 sx={{
@@ -201,10 +210,8 @@ const Register = () => {
                   fontSize: theme.typography.body2.fontSize,
                   my: theme => `${theme.spacing(6)} !important`
                 }}
-              >
-                or
-              </Divider>
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              ></Divider>
+              {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <IconButton href='/' component={Link} sx={{ color: '#497ce2' }} onClick={e => e.preventDefault()}>
                   <Icon icon='mdi:facebook' />
                 </IconButton>
@@ -222,7 +229,7 @@ const Register = () => {
                 <IconButton href='/' component={Link} sx={{ color: '#db4437' }} onClick={e => e.preventDefault()}>
                   <Icon icon='mdi:google' />
                 </IconButton>
-              </Box>
+              </Box> */}
             </form>
           </Box>
         </Box>
