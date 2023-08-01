@@ -117,7 +117,7 @@ const ClientLoginPage = () => {
                 id='email'
                 label='Email'
                 sx={{ mb: 4 }}
-                placeholder='john.doe@gmail.com'
+                placeholder='wellsyshospital@email.com'
               />
               <CustomTextField
                 fullWidth
@@ -152,18 +152,18 @@ const ClientLoginPage = () => {
                   justifyContent: 'space-between'
                 }}
               >
-                <FormControlLabel control={<Checkbox />} label='Remember Me' />
+                <FormControlLabel control={<Checkbox />} label='Manter login' />
                 <Typography component={LinkStyled} href='/pages/auth/forgot-password-v1'>
-                  Forgot Password?
+                  Esqueci minha senha
                 </Typography>
               </Box>
               <Button fullWidth type='submit' variant='contained' sx={{ mb: 4 }}>
-                Login
+                Entrar
               </Button>
               <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-                <Typography sx={{ color: 'text.secondary', mr: 2 }}>New on our platform?</Typography>
+                <Typography sx={{ color: 'text.secondary', mr: 2 }}>Novo em nossa plataforma?</Typography>
                 <Typography component={LinkStyled} href='/pages/auth/register-v1'>
-                  Create an account
+                  Criar uma conta
                 </Typography>
               </Box>
               <Divider
@@ -173,9 +173,7 @@ const ClientLoginPage = () => {
                   fontSize: theme.typography.body2.fontSize,
                   my: theme => `${theme.spacing(6)} !important`
                 }}
-              >
-                or
-              </Divider>
+              ></Divider>
               {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <IconButton href='/' component={Link} sx={{ color: '#497ce2' }} onClick={e => e.preventDefault()}>
                   <Icon icon='mdi:facebook' />
