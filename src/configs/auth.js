@@ -1,7 +1,7 @@
-export default {
-  meEndpoint: '/auth/me',
-  loginEndpoint: '/jwt/login',
-  registerEndpoint: '/jwt/register',
-  storageTokenKeyName: 'accessToken',
-  onTokenExpiration: 'refreshToken' // logout | refreshToken
-}
+import axios from 'axios'
+
+export const API = axios.create({
+  baseURL: 'http://localhost:3001',
+  timeout: 10000,
+  headers: { 'Content-Type': 'application/json' }
+})
