@@ -20,7 +20,7 @@ const defaultProvider = {
   logout: () => Promise.resolve()
 }
 const AuthContext = createContext(defaultProvider)
-const storageTokenKeyName = 'storageTokenKey'
+const storageTokenKeyName = 'accessToken'
 
 const AuthProvider = ({ children }) => {
   // ** States
@@ -32,7 +32,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const initAuth = async () => {
       const storedToken = window.localStorage.getItem(storageTokenKeyName)
-      console.log(storedToken) //log
       if (storedToken) {
         try {
           setLoading(true)
@@ -42,10 +41,18 @@ const AuthProvider = ({ children }) => {
               Authorization: `Bearer ${storedToken}`
             }
           })
-          console.log(response) //log
+
+          const handledResponse = {
+            id: response.data.id,
+            role: 'admin',
+            password: response.data.password,
+            fullName: response.data.name,
+            username: response.data.username,
+            email: response.data.email
+          }
           if (response) {
             setLoading(false)
-            setUser({ ...response.data.userData })
+            setUser({ ...handledResponse })
           }
         } catch (error) {
           ;() => {
