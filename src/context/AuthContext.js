@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
             setUser({ ...handledResponse })
           }
         } catch (error) {
-          ;() => {
+          ;(function () {
             localStorage.removeItem('userData')
             localStorage.removeItem('refreshToken')
             localStorage.removeItem('accessToken')
@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
             if (authConfig.onTokenExpiration === 'logout' && !router.pathname.includes('login')) {
               router.replace('/login')
             }
-          }
+          })()
         }
       } else {
         setLoading(false)
@@ -87,7 +87,15 @@ const AuthProvider = ({ children }) => {
 
       const returnUrl = router.query.returnUrl
 
-      setUser({ ...response.data.userData })
+      const handledResponse = {
+        id: response.data.id,
+        role: 'admin',
+        password: response.data.password,
+        fullName: response.data.name,
+        username: response.data.username,
+        email: response.data.email
+      }
+      setUser({ ...handledResponse })
 
       const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
 
