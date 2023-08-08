@@ -11,7 +11,7 @@ const data = {
   invoices: [
     {
       id: 4987,
-      issuedDate: `13 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '7777 Mendez Plains',
       company: 'Hall-Robbins PLC',
       companyEmail: 'don85@johnson.com',
@@ -24,11 +24,11 @@ const data = {
       avatarColor: 'primary',
       invoiceStatus: 'Paid',
       balance: '$724',
-      dueDate: `23 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4988,
-      issuedDate: `17 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '04033 Wesley Wall Apt. 961',
       company: 'Mccann LLC and Sons',
       companyEmail: 'brenda49@taylor.info',
@@ -37,14 +37,14 @@ const data = {
       name: 'Stephanie Burns',
       service: 'UI/UX Design & Development',
       total: 5219,
-      avatar: '/images/avatars/1.png',
+      avatar: '/images/avatars/2.png',
       invoiceStatus: 'Downloaded',
       balance: 0,
-      dueDate: `15 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4989,
-      issuedDate: `19 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '5345 Robert Squares',
       company: 'Leonard-Garcia and Sons',
       companyEmail: 'smithtiffany@powers.com',
@@ -56,11 +56,11 @@ const data = {
       avatar: '/images/avatars/2.png',
       invoiceStatus: 'Paid',
       balance: 0,
-      dueDate: `03 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4990,
-      issuedDate: `06 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '19022 Clark Parks Suite 149',
       company: 'Smith, Miller and Henry LLC',
       companyEmail: 'mejiageorge@lee-perez.com',
@@ -72,11 +72,11 @@ const data = {
       avatar: '/images/avatars/3.png',
       invoiceStatus: 'Sent',
       balance: 0,
-      dueDate: `11 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4991,
-      issuedDate: `08 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '8534 Saunders Hill Apt. 583',
       company: 'Garcia-Cameron and Sons',
       companyEmail: 'brandon07@pierce.com',
@@ -88,11 +88,11 @@ const data = {
       avatar: '/images/avatars/4.png',
       invoiceStatus: 'Draft',
       balance: '$815',
-      dueDate: `30 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4992,
-      issuedDate: `26 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '661 Perez Run Apt. 778',
       company: 'Burnett-Young PLC',
       companyEmail: 'guerrerobrandy@beasley-harper.com',
@@ -105,11 +105,11 @@ const data = {
       avatarColor: 'secondary',
       invoiceStatus: 'Paid',
       balance: 0,
-      dueDate: `24 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4993,
-      issuedDate: `17 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '074 Long Union',
       company: 'Wilson-Lee LLC',
       companyEmail: 'williamshenry@moon-smith.com',
@@ -122,11 +122,11 @@ const data = {
       avatarColor: 'success',
       invoiceStatus: 'Draft',
       balance: '$407',
-      dueDate: `22 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4994,
-      issuedDate: `11 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '5225 Ford Cape Apt. 840',
       company: 'Schwartz, Henry and Rhodes Group',
       companyEmail: 'margaretharvey@russell-murray.com',
@@ -138,11 +138,11 @@ const data = {
       avatar: '/images/avatars/5.png',
       invoiceStatus: 'Paid',
       balance: '-$205',
-      dueDate: `10 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4995,
-      issuedDate: `26 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '23717 James Club Suite 277',
       company: 'Henderson-Holder PLC',
       companyEmail: 'dianarodriguez@villegas.com',
@@ -154,11 +154,11 @@ const data = {
       avatar: '/images/avatars/6.png',
       invoiceStatus: 'Downloaded',
       balance: 0,
-      dueDate: `24 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4996,
-      issuedDate: `15 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '4528 Myers Gateway',
       company: 'Page-Wise PLC',
       companyEmail: 'bwilson@norris-brock.com',
@@ -170,11 +170,11 @@ const data = {
       avatar: '/images/avatars/7.png',
       invoiceStatus: 'Downloaded',
       balance: '$305',
-      dueDate: `02 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4997,
-      issuedDate: `27 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '4234 Mills Club Suite 107',
       company: 'Turner PLC Inc',
       companyEmail: 'markcampbell@bell.info',
@@ -186,11 +186,11 @@ const data = {
       avatar: '/images/avatars/8.png',
       invoiceStatus: 'Partial Payment',
       balance: '$666',
-      dueDate: `18 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4998,
-      issuedDate: `31 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '476 Keith Meadow',
       company: 'Levine-Dorsey PLC',
       companyEmail: 'mary61@rosario.com',
@@ -202,11 +202,11 @@ const data = {
       avatar: '/images/avatars/1.png',
       invoiceStatus: 'Partial Payment',
       balance: 0,
-      dueDate: `17 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 4999,
-      issuedDate: `14 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '56381 Ashley Village Apt. 332',
       company: 'Hall, Thompson and Ramirez LLC',
       companyEmail: 'sean22@cook.com',
@@ -218,11 +218,11 @@ const data = {
       avatar: '/images/avatars/2.png',
       invoiceStatus: 'Paid',
       balance: 0,
-      dueDate: `01 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5000,
-      issuedDate: `21 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '6946 Gregory Plaza Apt. 310',
       company: 'Lambert-Thomas Group',
       companyEmail: 'mccoymatthew@lopez-jenkins.net',
@@ -234,11 +234,11 @@ const data = {
       avatar: '/images/avatars/3.png',
       invoiceStatus: 'Paid',
       balance: 0,
-      dueDate: `22 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5001,
-      issuedDate: `30 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '64351 Andrew Lights',
       company: 'Gregory-Haynes PLC',
       companyEmail: 'novakshannon@mccarty-murillo.com',
@@ -250,11 +250,11 @@ const data = {
       avatar: '/images/avatars/4.png',
       invoiceStatus: 'Partial Payment',
       balance: '-$202',
-      dueDate: `02 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5002,
-      issuedDate: `21 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '5702 Sarah Heights',
       company: 'Wright-Schmidt LLC',
       companyEmail: 'smithrachel@davis-rose.net',
@@ -266,11 +266,11 @@ const data = {
       avatar: '/images/avatars/5.png',
       invoiceStatus: 'Downloaded',
       balance: '$731',
-      dueDate: `15 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5003,
-      issuedDate: `30 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '668 Robert Flats',
       company: 'Russell-Abbott Ltd',
       companyEmail: 'scott96@mejia.net',
@@ -283,11 +283,11 @@ const data = {
       avatarColor: 'warning',
       invoiceStatus: 'Sent',
       balance: '-$344',
-      dueDate: `17 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5004,
-      issuedDate: `27 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '55642 Chang Extensions Suite 373',
       company: 'Williams LLC Inc',
       companyEmail: 'cramirez@ross-bass.biz',
@@ -299,11 +299,11 @@ const data = {
       avatar: '/images/avatars/6.png',
       invoiceStatus: 'Partial Payment',
       balance: '-$253',
-      dueDate: `16 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5005,
-      issuedDate: `30 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '56694 Eric Orchard',
       company: 'Hudson, Bell and Phillips PLC',
       companyEmail: 'arielberg@wolfe-smith.com',
@@ -316,11 +316,11 @@ const data = {
       avatarColor: 'error',
       invoiceStatus: 'Past Due',
       balance: 0,
-      dueDate: `01 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5006,
-      issuedDate: `10 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '3727 Emma Island Suite 879',
       company: 'Berry, Gonzalez and Heath Inc',
       companyEmail: 'yrobinson@nichols.com',
@@ -332,11 +332,11 @@ const data = {
       avatar: '/images/avatars/7.png',
       invoiceStatus: 'Downloaded',
       balance: '$883',
-      dueDate: `12 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5007,
-      issuedDate: `01 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '953 Miller Common Suite 580',
       company: 'Martinez, Fuller and Chavez and Sons',
       companyEmail: 'tatejennifer@allen.net',
@@ -348,11 +348,11 @@ const data = {
       avatar: '/images/avatars/8.png',
       invoiceStatus: 'Sent',
       balance: 0,
-      dueDate: `19 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5008,
-      issuedDate: `22 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '808 Sullivan Street Apt. 135',
       company: 'Wilson and Sons LLC',
       companyEmail: 'gdurham@lee.com',
@@ -364,11 +364,11 @@ const data = {
       avatar: '/images/avatars/1.png',
       invoiceStatus: 'Partial Payment',
       balance: 0,
-      dueDate: `30 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5009,
-      issuedDate: `30 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '25135 Christopher Creek',
       company: 'Hawkins, Johnston and Mcguire PLC',
       companyEmail: 'jenny96@lawrence-thompson.com',
@@ -380,11 +380,11 @@ const data = {
       avatar: '/images/avatars/2.png',
       invoiceStatus: 'Paid',
       balance: 0,
-      dueDate: `10 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5010,
-      issuedDate: `06 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '81285 Rebecca Estates Suite 046',
       company: 'Huynh-Mills and Sons',
       companyEmail: 'jgutierrez@jackson.com',
@@ -396,11 +396,11 @@ const data = {
       avatar: '/images/avatars/3.png',
       invoiceStatus: 'Downloaded',
       balance: 0,
-      dueDate: `08 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5011,
-      issuedDate: `01 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '3102 Briggs Dale Suite 118',
       company: 'Jones-Cooley and Sons',
       companyEmail: 'hunter14@jones.com',
@@ -413,11 +413,11 @@ const data = {
       avatarColor: 'info',
       invoiceStatus: 'Draft',
       balance: 0,
-      dueDate: `01 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5012,
-      issuedDate: `30 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '811 Jill Skyway',
       company: 'Jones PLC Ltd',
       companyEmail: 'pricetodd@johnson-jenkins.com',
@@ -429,11 +429,11 @@ const data = {
       avatar: '/images/avatars/4.png',
       invoiceStatus: 'Partial Payment',
       balance: 0,
-      dueDate: `18 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5013,
-      issuedDate: `05 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '2223 Brandon Inlet Suite 597',
       company: 'Jordan, Gomez and Ross Group',
       companyEmail: 'perrydavid@chapman-rogers.com',
@@ -445,11 +445,11 @@ const data = {
       avatar: '/images/avatars/5.png',
       invoiceStatus: 'Draft',
       balance: 0,
-      dueDate: `01 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5014,
-      issuedDate: `01 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '08724 Barry Causeway',
       company: 'Gonzalez, Moody and Glover LLC',
       companyEmail: 'leahgriffin@carpenter.com',
@@ -462,11 +462,11 @@ const data = {
       avatarColor: 'primary',
       invoiceStatus: 'Downloaded',
       balance: 0,
-      dueDate: `23 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5015,
-      issuedDate: `16 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '073 Holt Ramp Apt. 755',
       company: 'Ashley-Pacheco Ltd',
       companyEmail: 'esparzadaniel@allen.com',
@@ -478,11 +478,11 @@ const data = {
       avatar: '/images/avatars/6.png',
       invoiceStatus: 'Draft',
       balance: 0,
-      dueDate: `01 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5016,
-      issuedDate: `24 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '984 Sherry Trail Apt. 953',
       company: 'Berry PLC Group',
       companyEmail: 'todd34@owens-morgan.com',
@@ -495,11 +495,11 @@ const data = {
       avatarColor: 'secondary',
       invoiceStatus: 'Paid',
       balance: '$951',
-      dueDate: `30 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5017,
-      issuedDate: `24 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '093 Jonathan Camp Suite 953',
       company: 'Allen Group Ltd',
       companyEmail: 'roydavid@bailey.com',
@@ -511,11 +511,11 @@ const data = {
       avatar: '/images/avatars/7.png',
       invoiceStatus: 'Partial Payment',
       balance: '-$153',
-      dueDate: `25 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5018,
-      issuedDate: `29 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '4735 Kristie Islands Apt. 259',
       company: 'Chapman-Schneider LLC',
       companyEmail: 'baldwinjoel@washington.com',
@@ -527,11 +527,11 @@ const data = {
       avatar: '/images/avatars/8.png',
       invoiceStatus: 'Draft',
       balance: 0,
-      dueDate: `10 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5019,
-      issuedDate: `07 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '92218 Andrew Radial',
       company: 'Mcclure, Hernandez and Simon Ltd',
       companyEmail: 'psmith@morris.info',
@@ -543,11 +543,11 @@ const data = {
       avatar: '/images/avatars/1.png',
       invoiceStatus: 'Partial Payment',
       balance: '-$459',
-      dueDate: `14 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5020,
-      issuedDate: `10 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '2342 Michelle Valley',
       company: 'Hamilton PLC and Sons',
       companyEmail: 'lori06@morse.com',
@@ -559,11 +559,11 @@ const data = {
       avatar: '/images/avatars/2.png',
       invoiceStatus: 'Past Due',
       balance: 0,
-      dueDate: `28 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5021,
-      issuedDate: `02 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '16039 Brittany Terrace Apt. 128',
       company: 'Silva-Reeves LLC',
       companyEmail: 'zpearson@miller.com',
@@ -576,11 +576,11 @@ const data = {
       avatarColor: 'success',
       invoiceStatus: 'Sent',
       balance: 0,
-      dueDate: `06 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5022,
-      issuedDate: `02 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '37856 Olsen Lakes Apt. 852',
       company: 'Solis LLC Ltd',
       companyEmail: 'strongpenny@young.net',
@@ -593,11 +593,11 @@ const data = {
       avatarColor: 'error',
       invoiceStatus: 'Sent',
       balance: 0,
-      dueDate: `09 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5023,
-      issuedDate: `23 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '11489 Griffin Plaza Apt. 927',
       company: 'Munoz-Peters and Sons',
       companyEmail: 'carrietorres@acosta.com',
@@ -609,11 +609,11 @@ const data = {
       avatar: '/images/avatars/3.png',
       invoiceStatus: 'Draft',
       balance: 0,
-      dueDate: `23 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5024,
-      issuedDate: `28 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '276 Michael Gardens Apt. 004',
       company: 'Shea, Velez and Garcia LLC',
       companyEmail: 'zjohnson@nichols-powers.com',
@@ -625,11 +625,11 @@ const data = {
       avatar: '/images/avatars/4.png',
       invoiceStatus: 'Partial Payment',
       balance: 0,
-      dueDate: `25 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5025,
-      issuedDate: `21 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '633 Bell Well Apt. 057',
       company: 'Adams, Simmons and Brown Group',
       companyEmail: 'kayla09@thomas.com',
@@ -642,11 +642,11 @@ const data = {
       avatarColor: 'warning',
       invoiceStatus: 'Downloaded',
       balance: 0,
-      dueDate: `07 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5026,
-      issuedDate: `24 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '1068 Lopez Fall',
       company: 'Williams-Lawrence and Sons',
       companyEmail: 'melvindavis@allen.info',
@@ -658,11 +658,11 @@ const data = {
       avatar: '/images/avatars/5.png',
       invoiceStatus: 'Draft',
       balance: 0,
-      dueDate: `22 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5027,
-      issuedDate: `13 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '86691 Mackenzie Light Suite 568',
       company: 'Deleon Inc LLC',
       companyEmail: 'gjordan@fernandez-coleman.com',
@@ -675,11 +675,11 @@ const data = {
       avatarColor: 'info',
       invoiceStatus: 'Sent',
       balance: 0,
-      dueDate: `04 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5028,
-      issuedDate: `18 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '86580 Sarah Bridge',
       company: 'Farmer, Johnson and Anderson Group',
       companyEmail: 'robertscott@garcia.com',
@@ -692,11 +692,11 @@ const data = {
       avatarColor: 'primary',
       invoiceStatus: 'Paid',
       balance: '$361',
-      dueDate: `02 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5029,
-      issuedDate: `29 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '49709 Edwin Ports Apt. 353',
       company: 'Sherman-Johnson PLC',
       companyEmail: 'desiree61@kelly.com',
@@ -709,11 +709,11 @@ const data = {
       avatarColor: 'secondary',
       invoiceStatus: 'Paid',
       balance: 0,
-      dueDate: `25 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5030,
-      issuedDate: `07 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '3856 Mathis Squares Apt. 584',
       company: 'Byrd LLC PLC',
       companyEmail: 'jeffrey25@martinez-hodge.com',
@@ -726,11 +726,11 @@ const data = {
       avatarColor: 'success',
       invoiceStatus: 'Draft',
       balance: 0,
-      dueDate: `06 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5031,
-      issuedDate: `21 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '141 Adrian Ridge Suite 550',
       company: 'Stone-Zimmerman Group',
       companyEmail: 'john77@anderson.net',
@@ -742,11 +742,11 @@ const data = {
       avatar: '/images/avatars/6.png',
       invoiceStatus: 'Partial Payment',
       balance: 0,
-      dueDate: `09 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5032,
-      issuedDate: `31 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '01871 Kristy Square',
       company: 'Yang, Hansen and Hart PLC',
       companyEmail: 'ywagner@jones.com',
@@ -759,11 +759,11 @@ const data = {
       avatarColor: 'error',
       invoiceStatus: 'Past Due',
       balance: 0,
-      dueDate: `22 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5033,
-      issuedDate: `12 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '075 Smith Views',
       company: 'Jenkins-Rosales Inc',
       companyEmail: 'calvin07@joseph-edwards.org',
@@ -775,11 +775,11 @@ const data = {
       avatar: '/images/avatars/7.png',
       invoiceStatus: 'Partial Payment',
       balance: 0,
-      dueDate: `22 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5034,
-      issuedDate: `10 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '2577 Pearson Overpass Apt. 314',
       company: 'Mason-Reed PLC',
       companyEmail: 'eric47@george-castillo.com',
@@ -792,11 +792,11 @@ const data = {
       avatarColor: 'warning',
       invoiceStatus: 'Paid',
       balance: 0,
-      dueDate: `22 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5035,
-      issuedDate: `20 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '1770 Sandra Mountains Suite 636',
       company: 'Foster-Pham PLC',
       companyEmail: 'jamesjoel@chapman.net',
@@ -809,11 +809,11 @@ const data = {
       avatarColor: 'info',
       invoiceStatus: 'Draft',
       balance: '$762',
-      dueDate: `12 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     },
     {
       id: 5036,
-      issuedDate: `19 ${currentMonth} ${now.getFullYear()}`,
+      issuedDate: `2023-08-19`,
       address: '78083 Laura Pines',
       company: 'Richardson and Sons LLC',
       companyEmail: 'pwillis@cross.org',
@@ -825,7 +825,7 @@ const data = {
       avatar: '/images/avatars/8.png',
       invoiceStatus: 'Paid',
       balance: '-$205',
-      dueDate: `25 ${currentMonth} ${now.getFullYear()}`
+      dueDate: `2023-08-25`
     }
   ]
 }
