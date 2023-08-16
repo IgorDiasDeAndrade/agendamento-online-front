@@ -1,5 +1,7 @@
 // ** React Imports
 import { createContext, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setCurrentUser } from 'src/store/apps/currentUser'
 
 // ** Next Import
 import { useRouter } from 'next/router'
@@ -29,6 +31,7 @@ const AuthProvider = ({ children }) => {
 
   // ** Hooks
   const router = useRouter()
+  const dispatch = useDispatch()
   useEffect(() => {
     const initAuth = async () => {
       const storedToken = window.localStorage.getItem(storageTokenKeyName)
@@ -78,8 +81,6 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await API.post('/login', params)
 
-      console.log(response) //log
-
       if (params.rememberMe) {
         window.localStorage.setItem(storageTokenKeyName, response.data.token)
         window.localStorage.setItem('userData', JSON.stringify(response.data.user))
@@ -96,6 +97,7 @@ const AuthProvider = ({ children }) => {
         email: response.data.email
       }
       setUser({ ...handledResponse })
+      dispatch(setCurrentUser(response.data))
 
       const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
 
