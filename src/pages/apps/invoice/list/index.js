@@ -197,7 +197,6 @@ const InvoiceList = () => {
   // ** Hooks
   const dispatch = useDispatch()
   const store = useSelector(state => state.invoice)
-  const currentUser = useSelector(state => state.currentUser)
   useEffect(() => {
     dispatch(
       fetchData({

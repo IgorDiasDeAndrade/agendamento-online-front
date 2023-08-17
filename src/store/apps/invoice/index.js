@@ -1,15 +1,45 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { API } from 'src/configs/auth'
 
 // ** Axios Imports
 import axios from 'axios'
 
 // ** Fetch Invoices
-export const fetchData = createAsyncThunk('appInvoice/fetchData', async params => {
-  const response = await axios.get('/apps/invoice/invoices', {
+export const fetchData = createAsyncThunk('appInvoice/fetchData', async (params, thunkAPI) => {
+  const { token } = thunkAPI.getState().currentUser
+
+  const response = await API.get('/agendas', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
     params
   })
 
-  return response.data
+  console.log(response.data)
+
+  const handledResponse = { invoices: [] }
+  for (let resp of response.data) {
+    handledResponse.invoices.push({
+      id: resp.agenda_id,
+      issuedDate: resp.date,
+      address: '7777 Mendez Plains',
+      company: 'Hall-Robbins PLC',
+      companyEmail: 'don85@johnson.com',
+      country: 'USA',
+      contact: '(616) 865-4180',
+      name: resp.agenda_name,
+      service: resp.procedure_type,
+      total: resp.slots_available,
+      avatar: '',
+      avatarColor: 'primary',
+      invoiceStatus: 'Paid',
+      balance: resp.additional_slots,
+      dueDate: resp.date
+    })
+  }
+  console.log(handledResponse)
+
+  return handledResponse
 })
 
 export const deleteInvoice = createAsyncThunk('appInvoice/deleteData', async (id, { getState, dispatch }) => {
