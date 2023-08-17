@@ -96,8 +96,9 @@ const AuthProvider = ({ children }) => {
         username: response.data.username,
         email: response.data.email
       }
+
+      dispatch(setCurrentUser({ ...response.data }))
       setUser({ ...handledResponse })
-      dispatch(setCurrentUser(response.data))
 
       const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
 
