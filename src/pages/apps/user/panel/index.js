@@ -59,20 +59,17 @@ const invoiceStatusObj = {
 }
 
 // ** renders client column
+
 const renderClient = row => {
-  if (row.avatar.length) {
-    return <CustomAvatar src={row.avatar} sx={{ mr: 2.5, width: 38, height: 38 }} />
-  } else {
-    return (
-      <CustomAvatar
-        skin='light'
-        color={row.avatarColor || 'primary'}
-        sx={{ mr: 2.5, width: 38, height: 38, fontWeight: 500, fontSize: theme => theme.typography.body1.fontSize }}
-      >
-        {getInitials(row.name || 'John Doe')}
-      </CustomAvatar>
-    )
-  }
+  return (
+    <CustomAvatar
+      skin='light'
+      color={'primary'}
+      sx={{ mr: 2.5, width: 38, height: 38, fontWeight: 500, fontSize: theme => theme.typography.body1.fontSize }}
+    >
+      {getInitials(row.agenda_name || 'John Doe')}
+    </CustomAvatar>
+  )
 }
 
 const defaultColumns = [
@@ -82,7 +79,10 @@ const defaultColumns = [
     minWidth: 100,
     headerName: 'ID',
     renderCell: ({ row }) => (
-      <Typography component={LinkStyled} href={`/apps/invoice/preview/${row.id}`}>{`#${row.id}`}</Typography>
+      <Typography
+        component={LinkStyled}
+        href={`/apps/invoice/preview/${row.agenda_id}`}
+      >{`#${row.agenda_id}`}</Typography>
     )
   },
   {
@@ -91,31 +91,32 @@ const defaultColumns = [
     field: 'invoiceStatus',
     renderHeader: () => <Icon icon='tabler:trending-up' />,
     renderCell: ({ row }) => {
-      const { dueDate, balance, invoiceStatus } = row
-      const color = invoiceStatusObj[invoiceStatus] ? invoiceStatusObj[invoiceStatus].color : 'primary'
+      const { additional_slots, slots_available, isActive } = row
+      const color = isActive ? 'success' : 'error'
 
       return (
         <Tooltip
           title={
             <div>
               <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
-                {invoiceStatus}
-              </Typography>
+                Agenda:
+              </Typography>{' '}
+              {isActive ? 'Ativa' : 'Inativa'}
               <br />
               <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
-                Balance:
+                Vagas:
               </Typography>{' '}
-              {balance}
+              {slots_available}
               <br />
               <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
-                Due Date:
+                Encaixes:
               </Typography>{' '}
-              {dueDate}
+              {additional_slots}
             </div>
           }
         >
           <CustomAvatar skin='light' color={color} sx={{ width: '1.875rem', height: '1.875rem' }}>
-            <Icon icon={invoiceStatusObj[invoiceStatus].icon} />
+            <Icon icon={isActive ? 'tabler:circle-half-2' : 'tabler:alert-circle'} />
           </CustomAvatar>
         </Tooltip>
       )
@@ -124,48 +125,54 @@ const defaultColumns = [
   {
     flex: 0.25,
     field: 'name',
-    minWidth: 320,
-    headerName: 'Client',
+    minWidth: 200,
+    headerName: 'Nome',
     renderCell: ({ row }) => {
-      const { name, companyEmail } = row
+      const { agenda_name, procedure_type } = row
 
       return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           {renderClient(row)}
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography noWrap sx={{ color: 'text.secondary', fontWeight: 500 }}>
-              {name}
+              {agenda_name}
             </Typography>
             <Typography noWrap variant='body2' sx={{ color: 'text.disabled' }}>
-              {companyEmail}
+              {procedure_type}
             </Typography>
           </Box>
         </Box>
       )
     }
   },
+
   {
     flex: 0.1,
-    minWidth: 100,
+    minWidth: 130,
     field: 'total',
-    headerName: 'Total',
-    renderCell: ({ row }) => <Typography sx={{ color: 'text.secondary' }}>{`$${row.total || 0}`}</Typography>
+    headerName: 'Horário',
+    renderCell: ({ row }) => (
+      <Typography sx={{ color: 'text.secondary' }}>{`${row.start_time.slice(0, 5)} até ${row.end_time.slice(
+        0,
+        5
+      )}`}</Typography>
+    )
   },
   {
     flex: 0.15,
-    minWidth: 140,
+    minWidth: 120,
     field: 'issuedDate',
-    headerName: 'Issued Date',
-    renderCell: ({ row }) => <Typography sx={{ color: 'text.secondary' }}>{row.issuedDate}</Typography>
+    headerName: 'Data',
+    renderCell: ({ row }) => <Typography sx={{ color: 'text.secondary' }}>{row.date.slice(0, 10)}</Typography>
   },
   {
     flex: 0.1,
-    minWidth: 100,
+    minWidth: 150,
     field: 'balance',
-    headerName: 'Balance',
+    headerName: 'Vagas',
     renderCell: ({ row }) => {
-      return row.balance !== 0 ? (
-        <Typography sx={{ color: 'text.secondary' }}>{row.balance}</Typography>
+      return row.slots_available !== 0 ? (
+        <Typography sx={{ color: 'text.secondary' }}>{row.slots_available}</Typography>
       ) : (
         <CustomChip rounded size='small' skin='light' color='success' label='Paid' />
       )
@@ -273,6 +280,7 @@ const UserPanel = () => {
       )
     }
   ]
+  const getRowId = row => row.agenda_id
 
   return (
     <DatePickerWrapper>
@@ -328,6 +336,7 @@ const UserPanel = () => {
           <Card>
             <TableHeader value={value} selectedRows={selectedRows} handleFilter={handleFilter} />
             <DataGrid
+              getRowId={getRowId}
               autoHeight
               pagination
               rowHeight={62}

@@ -19,23 +19,7 @@ export const fetchData = createAsyncThunk('appInvoice/fetchData', async (params,
 
   const handledResponse = { invoices: [] }
   for (let resp of response.data) {
-    handledResponse.invoices.push({
-      id: resp.agenda_id,
-      issuedDate: resp.date,
-      address: '7777 Mendez Plains',
-      company: 'Hall-Robbins PLC',
-      companyEmail: 'don85@johnson.com',
-      country: 'USA',
-      contact: '(616) 865-4180',
-      name: resp.agenda_name,
-      service: resp.procedure_type,
-      total: resp.slots_available,
-      avatar: '',
-      avatarColor: 'primary',
-      invoiceStatus: 'Paid',
-      balance: resp.additional_slots,
-      dueDate: resp.date
-    })
+    handledResponse.invoices.push(resp)
   }
   console.log(handledResponse)
 
