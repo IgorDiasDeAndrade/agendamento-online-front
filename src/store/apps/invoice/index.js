@@ -15,15 +15,7 @@ export const fetchData = createAsyncThunk('appInvoice/fetchData', async (params,
     params
   })
 
-  console.log(response.data)
-
-  const handledResponse = { invoices: [] }
-  for (let resp of response.data) {
-    handledResponse.invoices.push(resp)
-  }
-  console.log(handledResponse)
-
-  return handledResponse
+  return response.data
 })
 
 export const deleteInvoice = createAsyncThunk('appInvoice/deleteData', async (id, { getState, dispatch }) => {

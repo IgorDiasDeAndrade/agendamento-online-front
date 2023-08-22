@@ -91,8 +91,8 @@ const defaultColumns = [
     field: 'invoiceStatus',
     renderHeader: () => <Icon icon='tabler:trending-up' />,
     renderCell: ({ row }) => {
-      const { additional_slots, slots_available, isActive } = row
-      const color = isActive ? 'success' : 'error'
+      const { additional_slots, slots_available, is_active } = row
+      const color = is_active ? 'success' : 'error'
 
       return (
         <Tooltip
@@ -101,7 +101,7 @@ const defaultColumns = [
               <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
                 Agenda:
               </Typography>{' '}
-              {isActive ? 'Ativa' : 'Inativa'}
+              {is_active ? 'Ativa' : 'Inativa'}
               <br />
               <Typography variant='caption' sx={{ color: 'common.white', fontWeight: 600 }}>
                 Vagas:
@@ -116,7 +116,7 @@ const defaultColumns = [
           }
         >
           <CustomAvatar skin='light' color={color} sx={{ width: '1.875rem', height: '1.875rem' }}>
-            <Icon icon={isActive ? 'tabler:circle-half-2' : 'tabler:alert-circle'} />
+            <Icon icon={is_active ? 'tabler:circle-check' : 'tabler:alert-circle'} />
           </CustomAvatar>
         </Tooltip>
       )
@@ -294,16 +294,12 @@ const UserPanel = () => {
                   <CustomTextField
                     select
                     fullWidth
-                    label='Invoice Status'
+                    label='Status da agenda'
                     SelectProps={{ value: statusValue, onChange: e => handleStatusValue(e) }}
                   >
-                    <MenuItem value=''>None</MenuItem>
-                    <MenuItem value='downloaded'>Downloaded</MenuItem>
-                    <MenuItem value='draft'>Draft</MenuItem>
-                    <MenuItem value='paid'>Paid</MenuItem>
-                    <MenuItem value='partial payment'>Partial Payment</MenuItem>
-                    <MenuItem value='past due'>Past Due</MenuItem>
-                    <MenuItem value='sent'>Sent</MenuItem>
+                    <MenuItem value=''>Sem fitro</MenuItem>
+                    <MenuItem value='true'>Filtrar por ativas</MenuItem>
+                    <MenuItem value='false'>Filtrar por inativas</MenuItem>
                   </CustomTextField>
                 </Grid>
                 <Grid item xs={12} sm={6}>
