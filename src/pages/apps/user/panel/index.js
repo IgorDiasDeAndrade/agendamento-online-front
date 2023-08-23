@@ -75,7 +75,7 @@ const renderClient = row => {
 const defaultColumns = [
   {
     flex: 0.1,
-    field: 'id',
+    field: 'agenda_id',
     minWidth: 100,
     headerName: 'ID',
     renderCell: ({ row }) => (
@@ -88,7 +88,7 @@ const defaultColumns = [
   {
     flex: 0.1,
     minWidth: 80,
-    field: 'invoiceStatus',
+    field: 'is_active',
     renderHeader: () => <Icon icon='tabler:trending-up' />,
     renderCell: ({ row }) => {
       const { additional_slots, slots_available, is_active } = row
@@ -124,7 +124,7 @@ const defaultColumns = [
   },
   {
     flex: 0.25,
-    field: 'name',
+    field: 'agenda_name',
     minWidth: 200,
     headerName: 'Nome',
     renderCell: ({ row }) => {
@@ -149,7 +149,7 @@ const defaultColumns = [
   {
     flex: 0.1,
     minWidth: 130,
-    field: 'total',
+    field: 'start_time',
     headerName: 'Horário',
     renderCell: ({ row }) => (
       <Typography sx={{ color: 'text.secondary' }}>{`${row.start_time.slice(0, 5)} até ${row.end_time.slice(
@@ -161,14 +161,14 @@ const defaultColumns = [
   {
     flex: 0.15,
     minWidth: 120,
-    field: 'issuedDate',
+    field: 'date',
     headerName: 'Data',
     renderCell: ({ row }) => <Typography sx={{ color: 'text.secondary' }}>{row.date.slice(0, 10)}</Typography>
   },
   {
     flex: 0.1,
     minWidth: 150,
-    field: 'balance',
+    field: 'slot_available',
     headerName: 'Vagas',
     renderCell: ({ row }) => {
       return row.slots_available !== 0 ? (
