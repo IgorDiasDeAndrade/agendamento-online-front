@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
   const dispatch = useDispatch()
   useEffect(() => {
     const initAuth = async () => {
-      const storedToken = window.localStorage.getItem(storageTokenKeyName)
+      const storedToken = window.sessionStorage.getItem(storageTokenKeyName)
       if (storedToken) {
         try {
           setLoading(true)
@@ -59,9 +59,9 @@ const AuthProvider = ({ children }) => {
           }
         } catch (error) {
           ;(function () {
-            localStorage.removeItem('userData')
-            localStorage.removeItem('refreshToken')
-            localStorage.removeItem('accessToken')
+            sessionStorage.removeItem('userData')
+            sessionStorage.removeItem('refreshToken')
+            sessionStorage.removeItem('accessToken')
             setUser(null)
             setLoading(false)
             if (authConfig.onTokenExpiration === 'logout' && !router.pathname.includes('login')) {
@@ -82,8 +82,8 @@ const AuthProvider = ({ children }) => {
       const response = await API.post('/login', params)
 
       if (params.rememberMe) {
-        window.localStorage.setItem(storageTokenKeyName, response.data.token)
-        window.localStorage.setItem('userData', JSON.stringify(response.data.user))
+        window.sessionStorage.setItem(storageTokenKeyName, response.data.token)
+        window.sessionStorage.setItem('userData', JSON.stringify(response.data.user))
       }
 
       const returnUrl = router.query.returnUrl
@@ -110,8 +110,8 @@ const AuthProvider = ({ children }) => {
 
   const handleLogout = () => {
     setUser(null)
-    window.localStorage.removeItem('userData')
-    window.localStorage.removeItem(storageTokenKeyName)
+    window.sessionStorage.removeItem('userData')
+    window.sessionStorage.removeItem(storageTokenKeyName)
     router.push('/login')
   }
 
