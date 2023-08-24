@@ -1,7 +1,7 @@
 // ** React Imports
 import { createContext, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setCurrentUser } from 'src/store/apps/currentUser'
+import { setCurrentUser, clearCurrentUser } from 'src/store/apps/currentUser'
 
 // ** Next Import
 import { useRouter } from 'next/router'
@@ -97,6 +97,8 @@ const AuthProvider = ({ children }) => {
         email: response.data.email
       }
 
+      console.log('chegou aqui')
+
       dispatch(setCurrentUser({ ...response.data }))
       setUser({ ...handledResponse })
 
@@ -109,6 +111,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const handleLogout = () => {
+    dispatch(clearCurrentUser)
     setUser(null)
     window.sessionStorage.removeItem('userData')
     window.sessionStorage.removeItem(storageTokenKeyName)

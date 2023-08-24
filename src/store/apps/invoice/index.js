@@ -6,16 +6,20 @@ import axios from 'axios'
 
 // ** Fetch Invoices
 export const fetchData = createAsyncThunk('appInvoice/fetchData', async (params, thunkAPI) => {
-  const { token } = thunkAPI.getState().currentUser
+  try {
+    const { token } = thunkAPI.getState().currentUser
 
-  const response = await API.get('/agendas', {
-    headers: {
-      Authorization: `Bearer ${token}`
-    },
-    params
-  })
+    const response = await API.get('/agendas', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      params
+    })
 
-  return response.data
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 export const deleteInvoice = createAsyncThunk('appInvoice/deleteData', async (id, { getState, dispatch }) => {

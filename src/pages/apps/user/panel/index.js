@@ -40,6 +40,7 @@ import CustomTextField from 'src/@core/components/mui/text-field'
 
 // ** Styled Components
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
+import { setCurrentUser } from 'src/store/apps/currentUser'
 
 // ** Styled component for the link in the dataTable
 const LinkStyled = styled(Link)(({ theme }) => ({
@@ -204,8 +205,14 @@ const UserPanel = () => {
   // ** Hooks
   const dispatch = useDispatch()
   const store = useSelector(state => state.invoice)
+  const currentUser = useSelector(state => state.currentUser)
+  const storageTokenKeyName = 'accessToken'
 
   useEffect(() => {
+    if (!currentUser) {
+      dispatch(setCurrentUser({ token: window.sessionStorage.getItem(storageTokenKeyName) }))
+    }
+
     dispatch(
       fetchData({
         dates,
@@ -213,7 +220,7 @@ const UserPanel = () => {
         status: statusValue
       })
     )
-  }, [dispatch, statusValue, value, dates])
+  }, [dispatch, statusValue, value, dates, currentUser])
 
   const handleFilter = val => {
     setValue(val)
