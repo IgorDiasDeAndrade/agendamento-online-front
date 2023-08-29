@@ -250,7 +250,11 @@ const UserPanel = () => {
       renderCell: ({ row }) => (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Tooltip title='Delete Invoice'>
-            <IconButton size='small' sx={{ color: 'text.secondary' }} onClick={() => dispatch(deleteInvoice(row.id))}>
+            <IconButton
+              size='small'
+              sx={{ color: 'text.secondary' }}
+              onClick={() => dispatch(deleteInvoice(row.agenda_id))}
+            >
               <Icon icon='tabler:trash' />
             </IconButton>
           </Tooltip>
@@ -259,7 +263,7 @@ const UserPanel = () => {
               size='small'
               component={Link}
               sx={{ color: 'text.secondary' }}
-              href={`/apps/invoice/preview/${row.id}`}
+              href={`/apps/invoice/preview/${row.agenda_id}`}
             >
               <Icon icon='tabler:eye' />
             </IconButton>
