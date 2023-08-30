@@ -19,12 +19,16 @@ import CustomTextField from 'src/@core/components/mui/text-field'
 
 // ** Third Party Imports
 import DatePicker from 'react-datepicker'
+import { TimeField } from '@mui/x-date-pickers/TimeField'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { API } from 'src/configs/auth'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
 const CustomInput = forwardRef((props, ref) => {
-  return <CustomTextField fullWidth {...props} inputRef={ref} label='Birth Date' autoComplete='off' />
+  return <CustomTextField fullWidth {...props} inputRef={ref} label='Data da agenda' autoComplete='off' />
 })
 
 const FormLayoutsSeparator = () => {
@@ -62,129 +66,94 @@ const FormLayoutsSeparator = () => {
     setLanguage(event.target.value)
   }
 
+  const handleTimeChange = event => {
+    setValues(...values, event.target.value)
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+
+    // Montar os dados a serem enviados
+    const formData = {
+      agenda_name: values.agenda_name,
+      procedure_type: values.procedure_type,
+      date: values.date,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      country: values.country,
+      language: language,
+      date: date,
+      phoneNumber: values.phoneNumber
+    }
+
+    try {
+      const response = await API.post('/agenda', formData)
+
+      console.log('Resposta da API:', response.data)
+    } catch (error) {
+      console.error('Erro ao enviar os dados:', error)
+    }
+  }
+
   return (
     <Card>
-      <CardHeader title='Multi Column with Form Separator' />
+      <CardHeader title='Adicionar agenda' />
       <Divider sx={{ m: '0 !important' }} />
       <form onSubmit={e => e.preventDefault()}>
         <CardContent>
           <Grid container spacing={5}>
-            <Grid item xs={12}>
-              <Typography variant='body2' sx={{ fontWeight: 600 }}>
-                1. Account Details
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <CustomTextField fullWidth label='Username' placeholder='carterLeonard' />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <CustomTextField fullWidth type='email' label='Email' placeholder='carterleonard@gmail.com' />
-            </Grid>
+            <Grid item xs={12}></Grid>
             <Grid item xs={12} sm={6}>
               <CustomTextField
                 fullWidth
-                label='Password'
-                value={values.password}
-                id='form-layouts-separator-password'
-                onChange={handlePasswordChange('password')}
-                type={values.showPassword ? 'text' : 'password'}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position='end'>
-                      <IconButton
-                        edge='end'
-                        onClick={handleClickShowPassword}
-                        onMouseDown={e => e.preventDefault()}
-                        aria-label='toggle password visibility'
-                      >
-                        <Icon fontSize='1.25rem' icon={values.showPassword ? 'tabler:eye' : 'tabler:eye-off'} />
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
+                name='agenda_name'
+                label='Nome da Agenda'
+                placeholder='Agenda do Dr. Jefferson'
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <CustomTextField
-                fullWidth
-                value={values.password2}
-                label='Confirm Password'
-                id='form-layouts-separator-password-2'
-                onChange={handleConfirmChange('password2')}
-                type={values.showPassword2 ? 'text' : 'password'}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position='end'>
-                      <IconButton
-                        edge='end'
-                        onMouseDown={e => e.preventDefault()}
-                        aria-label='toggle password visibility'
-                        onClick={handleClickShowConfirmPassword}
-                      >
-                        <Icon fontSize='1.25rem' icon={values.showPassword2 ? 'tabler:eye' : 'tabler:eye-off'} />
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Divider sx={{ mb: '0 !important' }} />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant='body2' sx={{ fontWeight: 600 }}>
-                2. Personal Info
-              </Typography>
+              <CustomTextField fullWidth name='procedure_type' label='Tipo de procedimento' placeholder='Cirurgia' />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <CustomTextField fullWidth label='First Name' placeholder='Leonard' />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <CustomTextField fullWidth label='Last Name' placeholder='Carter' />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <CustomTextField select fullWidth label='Country' id='form-layouts-separator-select' defaultValue=''>
-                <MenuItem value='UK'>UK</MenuItem>
-                <MenuItem value='USA'>USA</MenuItem>
-                <MenuItem value='Australia'>Australia</MenuItem>
-                <MenuItem value='Germany'>Germany</MenuItem>
-              </CustomTextField>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <CustomTextField
-                select
-                fullWidth
-                defaultValue=''
-                label='Language'
-                id='form-layouts-separator-multiple-select'
-                SelectProps={{
-                  multiple: true,
-                  value: language,
-                  onChange: e => handleSelectChange(e)
-                }}
-              >
-                <MenuItem value='English'>English</MenuItem>
-                <MenuItem value='French'>French</MenuItem>
-                <MenuItem value='Spanish'>Spanish</MenuItem>
-                <MenuItem value='Portuguese'>Portuguese</MenuItem>
-                <MenuItem value='Italian'>Italian</MenuItem>
-                <MenuItem value='German'>German</MenuItem>
-                <MenuItem value='Arabic'>Arabic</MenuItem>
-              </CustomTextField>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <TimeField label='Início' name='start_time' value={values.start_time} format='HH:mm' sx={{ ml: 6 }} />
+                <TimeField label='Fim' name='end_time' value={values.end_time} format='HH:mm' sx={{ ml: 6 }} />
+              </LocalizationProvider>
             </Grid>
             <Grid item xs={12} sm={6}>
               <DatePicker
                 selected={date}
                 showYearDropdown
                 showMonthDropdown
-                placeholderText='MM-DD-YYYY'
+                dateFormat='dd/MM/yyyy'
+                placeholderText='DD-MM-YYYY'
                 customInput={<CustomInput />}
                 id='form-layouts-separator-date'
                 onChange={date => setDate(date)}
               />
             </Grid>
+            <Grid item xs={12}>
+              <Divider sx={{ mb: '0 !important' }} />
+            </Grid>
+            <Grid item xs={12}></Grid>
             <Grid item xs={12} sm={6}>
-              <CustomTextField fullWidth type='number' label='Phone No.' placeholder='123-456-7890' />
+              <CustomTextField fullWidth name='slots_available' type='number' label='Máx. vagas' placeholder='20' />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <CustomTextField fullWidth name='additional_slots' type='number' label='Máx. encaixes' placeholder='5' />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <CustomTextField
+                select
+                fullWidth
+                name='agenda_type'
+                label='Tipo de agenda'
+                id='form-layouts-separator-select'
+                defaultValue='2'
+              >
+                <MenuItem value='1'>Horários fracionados</MenuItem>
+                <MenuItem value='2'>Horários fixos</MenuItem>
+              </CustomTextField>
             </Grid>
           </Grid>
         </CardContent>
