@@ -22,6 +22,7 @@ import DatePicker from 'react-datepicker'
 import { TimeField } from '@mui/x-date-pickers/TimeField'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { format } from 'date-fns'
 import { API } from 'src/configs/auth'
 
 // ** Icon Imports
@@ -34,62 +35,47 @@ const CustomInput = forwardRef((props, ref) => {
 const FormLayoutsSeparator = () => {
   // ** States
   const [date, setDate] = useState(null)
-  const [language, setLanguage] = useState([])
+  const [start_time, setStartTime] = useState(null)
+  const [end_time, setEndTime] = useState(null)
 
-  const [values, setValues] = useState({
-    password: '',
-    password2: '',
-    showPassword: false,
-    showPassword2: false
+  const [form, setForm] = useState({
+    agenda_name: '',
+    agenda_type: '',
+    procedure_type: '',
+    slots_available: '',
+    additional_slots: '',
+    is_active: false
   })
 
-  // Handle Password
-  const handlePasswordChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
-
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword })
-  }
-
-  // Handle Confirm Password
-  const handleConfirmChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
-
-  const handleClickShowConfirmPassword = () => {
-    setValues({ ...values, showPassword2: !values.showPassword2 })
-  }
-
-  // Handle Select
-  const handleSelectChange = event => {
-    setLanguage(event.target.value)
-  }
-
-  const handleTimeChange = event => {
-    setValues(...values, event.target.value)
+  function handleChangeForm(e) {
+    const value = e.target.value
+    setForm({ ...form, [e.target.name]: value })
   }
 
   const handleSubmit = async e => {
     e.preventDefault()
 
-    // Montar os dados a serem enviados
     const formData = {
-      agenda_name: values.agenda_name,
-      procedure_type: values.procedure_type,
-      date: values.date,
-      firstName: values.firstName,
-      lastName: values.lastName,
-      country: values.country,
-      language: language,
-      date: date,
-      phoneNumber: values.phoneNumber
+      agenda_name: form.agenda_name,
+      agenda_type: form.agenda_type,
+      procedure_type: form.procedure_type,
+      start_time: format(new Date(start_time), 'HH:mm'),
+      end_time: format(new Date(end_time), 'HH:mm'),
+      date: format(new Date(date), 'yyyy-MM-dd'),
+      slots_available: form.slots_available,
+      additional_slots: form.additional_slots,
+      is_active: false
     }
 
-    try {
-      const response = await API.post('/agenda', formData)
+    const token = window.sessionStorage.getItem('accessToken')
 
-      console.log('Resposta da API:', response.data)
+    try {
+      const response = await API.post('/agenda', formData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log(response)
     } catch (error) {
       console.error('Erro ao enviar os dados:', error)
     }
@@ -99,7 +85,7 @@ const FormLayoutsSeparator = () => {
     <Card>
       <CardHeader title='Adicionar agenda' />
       <Divider sx={{ m: '0 !important' }} />
-      <form onSubmit={e => e.preventDefault()}>
+      <form onSubmit={handleSubmit}>
         <CardContent>
           <Grid container spacing={5}>
             <Grid item xs={12}></Grid>
@@ -107,17 +93,40 @@ const FormLayoutsSeparator = () => {
               <CustomTextField
                 fullWidth
                 name='agenda_name'
+                value={form.agenda_name}
                 label='Nome da Agenda'
                 placeholder='Agenda do Dr. Jefferson'
+                onChange={e => handleChangeForm(e)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <CustomTextField fullWidth name='procedure_type' label='Tipo de procedimento' placeholder='Cirurgia' />
+              <CustomTextField
+                fullWidth
+                name='procedure_type'
+                value={form.procedure_type}
+                label='Tipo de procedimento'
+                placeholder='Cirurgia'
+                onChange={e => handleChangeForm(e)}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <TimeField label='Início' name='start_time' value={values.start_time} format='HH:mm' sx={{ ml: 6 }} />
-                <TimeField label='Fim' name='end_time' value={values.end_time} format='HH:mm' sx={{ ml: 6 }} />
+                <TimeField
+                  label='Início'
+                  name='start_time'
+                  value={start_time}
+                  format='HH:mm'
+                  onChange={newValue => setStartTime(newValue)}
+                  sx={{ ml: 6 }}
+                />
+                <TimeField
+                  label='Fim'
+                  name='end_time'
+                  value={end_time}
+                  format='HH:mm'
+                  onChange={newValue => setEndTime(newValue)}
+                  sx={{ ml: 6 }}
+                />
               </LocalizationProvider>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -137,19 +146,37 @@ const FormLayoutsSeparator = () => {
             </Grid>
             <Grid item xs={12}></Grid>
             <Grid item xs={12} sm={6}>
-              <CustomTextField fullWidth name='slots_available' type='number' label='Máx. vagas' placeholder='20' />
+              <CustomTextField
+                fullWidth
+                name='slots_available'
+                value={form.slots_available}
+                type='number'
+                label='Máx. vagas'
+                placeholder='20'
+                onChange={e => handleChangeForm(e)}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <CustomTextField fullWidth name='additional_slots' type='number' label='Máx. encaixes' placeholder='5' />
+              <CustomTextField
+                fullWidth
+                value={form.additional_slots}
+                name='additional_slots'
+                type='number'
+                label='Máx. encaixes'
+                placeholder='5'
+                onChange={e => handleChangeForm(e)}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <CustomTextField
                 select
                 fullWidth
+                value={form.agenda_type}
                 name='agenda_type'
                 label='Tipo de agenda'
                 id='form-layouts-separator-select'
                 defaultValue='2'
+                onChange={e => handleChangeForm(e)}
               >
                 <MenuItem value='1'>Horários fracionados</MenuItem>
                 <MenuItem value='2'>Horários fixos</MenuItem>
