@@ -38,7 +38,6 @@ const AuthProvider = ({ children }) => {
       if (storedToken) {
         try {
           setLoading(true)
-
           const response = await API.get('/user', {
             headers: {
               Authorization: `Bearer ${storedToken}`
@@ -58,16 +57,17 @@ const AuthProvider = ({ children }) => {
             setUser({ ...handledResponse })
           }
         } catch (error) {
-          ;(function () {
-            sessionStorage.removeItem('userData')
-            sessionStorage.removeItem('refreshToken')
-            sessionStorage.removeItem('accessToken')
-            setUser(null)
-            setLoading(false)
-            if (authConfig.onTokenExpiration === 'logout' && !router.pathname.includes('login')) {
-              router.replace('/login')
-            }
-          })()
+          console.log(error.message)
+            ; (function () {
+              sessionStorage.removeItem('userData')
+              sessionStorage.removeItem('refreshToken')
+              sessionStorage.removeItem('accessToken')
+              setUser(null)
+              setLoading(false)
+              if (authConfig.onTokenExpiration === 'logout' && !router.pathname.includes('login')) {
+                router.replace('/login')
+              }
+            })()
         }
       } else {
         setLoading(false)
@@ -97,7 +97,6 @@ const AuthProvider = ({ children }) => {
         email: response.data.email
       }
 
-      console.log('chegou aqui')
 
       dispatch(setCurrentUser({ ...response.data }))
       setUser({ ...handledResponse })

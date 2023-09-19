@@ -41,6 +41,7 @@ import CustomTextField from 'src/@core/components/mui/text-field'
 // ** Styled Components
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 import { setCurrentUser } from 'src/store/apps/currentUser'
+import PreviewModal from './schedulePreview'
 
 // ** Styled component for the link in the dataTable
 const LinkStyled = styled(Link)(({ theme }) => ({
@@ -259,14 +260,7 @@ const UserPanel = () => {
             </IconButton>
           </Tooltip>
           <Tooltip title='View'>
-            <IconButton
-              size='small'
-              component={Link}
-              sx={{ color: 'text.secondary' }}
-              href={`/apps/invoice/preview/${row.agenda_id}`}
-            >
-              <Icon icon='tabler:eye' />
-            </IconButton>
+            <PreviewModal infos={row} />
           </Tooltip>
           <OptionsMenu
             menuProps={{ sx: { '& .MuiMenuItem-root svg': { mr: 2 } } }}
@@ -287,7 +281,7 @@ const UserPanel = () => {
               }
             ]}
           />
-        </Box>
+        </Box >
       )
     }
   ]
