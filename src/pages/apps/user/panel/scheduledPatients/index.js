@@ -1,123 +1,248 @@
-
 // ** React Imports
 import { useState } from 'react'
 
 // ** MUI Imports
-import Paper from '@mui/material/Paper'
-import Table from '@mui/material/Table'
-import TableRow from '@mui/material/TableRow'
-import TableHead from '@mui/material/TableHead'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TablePagination from '@mui/material/TablePagination'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import Typography from '@mui/material/Typography'
+import CardHeader from '@mui/material/CardHeader'
+import { DataGrid } from '@mui/x-data-grid'
 
-const columns = [
-    { id: 'name', label: 'Name', minWidth: 170 },
-    { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-    {
-        id: 'population',
-        label: 'Population',
-        minWidth: 170,
-        align: 'right',
-        format: value => value.toLocaleString('en-US')
-    },
-    {
-        id: 'size',
-        label: 'Size\u00a0(km\u00b2)',
-        minWidth: 170,
-        align: 'right',
-        format: value => value.toLocaleString('en-US')
-    },
-    {
-        id: 'density',
-        label: 'Density',
-        minWidth: 170,
-        align: 'right',
-        format: value => value.toFixed(2)
-    }
-]
-function createData(name, code, population, size) {
-    const density = population / size
+import QuickSearchToolbar from 'src/views/table/data-grid/QuickSearchToolbar'
+import { IconButton, Tooltip } from '@mui/material'
+import Icon from 'src/@core/components/icon'
+import { API } from 'src/configs/auth'
 
-    return { name, code, population, size, density }
+
+const escapeRegExp = value => {
+    return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
 }
 
-const rows = [
-    createData('India', 'IN', 1324171354, 3287263),
-    createData('China', 'CN', 1403500365, 9596961),
-    createData('Italy', 'IT', 60483973, 301340),
-    createData('United States', 'US', 327167434, 9833520),
-    createData('Canada', 'CA', 37602103, 9984670),
-    createData('Australia', 'AU', 25475400, 7692024),
-    createData('Germany', 'DE', 83019200, 357578),
-    createData('Ireland', 'IE', 4857000, 70273),
-    createData('Mexico', 'MX', 126577691, 1972550),
-    createData('Japan', 'JP', 126317000, 377973),
-    createData('France', 'FR', 67022000, 640679),
-    createData('United Kingdom', 'GB', 67545757, 242495),
-    createData('Russia', 'RU', 146793744, 17098246),
-    createData('Nigeria', 'NG', 200962417, 923768),
-    createData('Brazil', 'BR', 210147125, 8515767)
-]
+function cpfMask(v) {
+    v = v.replace(/\D/g, "")
+    v = v.replace(/(\d{3})(\d)/, "$1.$2")
+    v = v.replace(/(\d{3})(\d)/, "$1.$2")
 
-const ScheduledPatients = () => {
-    // ** States
-    const [page, setPage] = useState(0)
-    const [rowsPerPage, setRowsPerPage] = useState(10)
+    v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+    return v
+}
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage)
+const phoneMask = (value) => {
+    if (!value) return ""
+    value = value.replace(/\D/g, '')
+    value = value.replace(/(\d{2})(\d)/, "($1) $2")
+    value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+    return value
+}
+
+
+
+
+
+const ScheduledPatients = ({ patients, modal }) => {
+    const [data] = useState(patients)
+    const [searchText, setSearchText] = useState('')
+    const [filteredData, setFilteredData] = useState([])
+    const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 })
+    console.log(patients)
+
+    const columns = modal ? [
+        {
+            flex: 0.1,
+            field: 'hour',
+            minWidth: 100,
+            headerName: 'Horário',
+            renderCell: params => {
+                return (
+                    <Typography variant='body2' sx={{ color: 'text.primary' }}>
+                        {params.row.appointment_time}
+                    </Typography>
+                )
+            }
+        },
+        {
+            flex: 0.3,
+            minWidth: 190,
+            field: 'full_name',
+            headerName: 'Nome',
+            renderCell: params => {
+                const { row } = params
+
+                return (
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+
+                        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                            <Typography noWrap variant='body2' sx={{ color: 'text.primary', fontWeight: 600 }}>
+                                {row.name}
+                            </Typography>
+                        </Box>
+                    </Box>
+                )
+            }
+        },
+        {
+            flex: 0.2,
+            minWidth: 140,
+            headerName: 'CPF',
+            field: 'cpfnumber',
+            renderCell: params => (
+                <Typography variant='body2' sx={{ color: 'text.primary' }}>
+                    {cpfMask(params.row.cpf)}
+                </Typography>
+            )
+        },
+        {
+            flex: 0.2,
+            minWidth: 140,
+            field: 'contact',
+            headerName: 'Contato',
+            renderCell: params => (
+                <Typography variant='body2' sx={{ color: 'text.primary' }}>
+                    {phoneMask(params.row.contact_number_1)}
+                </Typography>
+            )
+        }
+    ] : [
+        {
+            flex: 0.1,
+            field: 'hour',
+            minWidth: 100,
+            headerName: 'Horário',
+            renderCell: params => {
+                return (
+                    <Typography variant='body2' sx={{ color: 'text.primary' }}>
+                        {params.row.appointment_time}
+                    </Typography>
+                )
+            }
+        },
+        {
+            flex: 0.3,
+            minWidth: 190,
+            field: 'full_name',
+            headerName: 'Nome',
+            renderCell: params => {
+                const { row } = params
+
+                return (
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+
+                        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                            <Typography noWrap variant='body2' sx={{ color: 'text.primary', fontWeight: 600 }}>
+                                {row.name}
+                            </Typography>
+                        </Box>
+                    </Box>
+                )
+            }
+        },
+        {
+            flex: 0.2,
+            minWidth: 140,
+            headerName: 'CPF',
+            field: 'cpfnumber',
+            renderCell: params => (
+                <Typography variant='body2' sx={{ color: 'text.primary' }}>
+                    {cpfMask(params.row.cpf)}
+                </Typography>
+            )
+        },
+        {
+            flex: 0.2,
+            minWidth: 140,
+            field: 'contact',
+            headerName: 'Contato',
+            renderCell: params => (
+                <Typography variant='body2' sx={{ color: 'text.primary' }}>
+                    {phoneMask(params.row.contact_number_1)}
+                </Typography>
+            )
+        },
+        {
+            flex: 0.1,
+            minWidth: 20,
+            field: 'remove',
+            headerName: "Remover",
+            renderCell: params => (
+                <Tooltip title='Delete Patient'>
+                    <IconButton
+                        size='small'
+                        sx={{ color: 'text.secondary' }}
+                        onClick={() => removePatient(params.row.id)}
+                    >
+                        <Icon icon='tabler:trash' />
+                    </IconButton>
+                </Tooltip>
+            )
+        }
+    ]
+
+    const removePatient = async (patient_id) => {
+        const id = window.sessionStorage.getItem('agenda_id');
+        const token = window.sessionStorage.getItem('accessToken')
+
+        try {
+            await API.delete(`/agenda/patient/${id}`, {
+                data: { patient_id },
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            window.location.reload();
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
-    const handleChangeRowsPerPage = event => {
-        setRowsPerPage(+event.target.value)
-        setPage(0)
+    const handleSearch = searchValue => {
+        setSearchText(searchValue)
+        const searchRegex = new RegExp(escapeRegExp(searchValue), 'i')
+
+        const filteredRows = data.filter(row => {
+            return Object.keys(row).some(field => {
+                // @ts-ignore
+                return searchRegex.test(row[field])
+            })
+        })
+        if (searchValue.length) {
+            setFilteredData(filteredRows)
+        } else {
+            setFilteredData([])
+        }
     }
 
     return (
-        <Box>
-            <TableContainer component={Paper} sx={{ maxHeight: 440 }}>
-                <Table stickyHeader aria-label='sticky table'>
-                    <TableHead>
-                        <TableRow>
-                            {columns.map(column => (
-                                <TableCell key={column.id} align={column.align} sx={{ minWidth: column.minWidth }}>
-                                    {column.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
-                            return (
-                                <TableRow hover role='checkbox' tabIndex={-1} key={row.code}>
-                                    {columns.map(column => {
-                                        const value = row[column.id]
-
-                                        return (
-                                            <TableCell key={column.id} align={column.align}>
-                                                {column.format && typeof value === 'number' ? column.format(value) : value}
-                                            </TableCell>
-                                        )
-                                    })}
-                                </TableRow>
-                            )
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component='div'
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+        <Card>
+            <CardHeader title='Pacientes' />
+            <DataGrid
+                autoHeight
+                columns={columns}
+                pageSizeOptions={[7, 10, 25]}
+                paginationModel={paginationModel}
+                slots={{ toolbar: QuickSearchToolbar }}
+                onPaginationModelChange={setPaginationModel}
+                rows={filteredData.length ? filteredData : data}
+                sx={{
+                    '& .MuiSvgIcon-root': {
+                        fontSize: '1.125rem',
+                    }
+                }}
+                slotProps={{
+                    baseButton: {
+                        visibility: 'hidden',
+                        size: 'medium',
+                        variant: 'outlined'
+                    },
+                    toolbar: {
+                        showQuickFilter: false,
+                        value: searchText,
+                        clearSearch: () => handleSearch(''),
+                        onChange: event => handleSearch(event.target.value)
+                    }
+                }}
             />
-        </Box>
+        </Card>
     )
 }
 

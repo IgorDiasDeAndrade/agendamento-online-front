@@ -3,12 +3,12 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Icon from 'src/@core/components/icon'
 import IconButton from '@mui/material/IconButton'
 import ScheduleInfos from '../scheduleInfos';
 import ScheduledPatients from '../scheduledPatients';
+import { API } from 'src/configs/auth';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const style = {
@@ -17,20 +17,44 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 'fit-content',
-    height: 528,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
-    display: 'flex',
-    gap: 5
+    p: 4
 };
 
-export default function PreviewModal({ infos }) {
+const closeIconStyle = {
+    position: 'absolute',
+    right: 30,
+    top: 25
+}
+
+export default function PreviewModal({ id }) {
     const [open, setOpen] = React.useState(false);
+    const [infos, setInfos] = React.useState();
+    const [patients, setPatients] = React.useState();
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    React.useEffect(() => {
+
+        async function loadAgenda(id) {
+            const token = window.sessionStorage.getItem('accessToken')
+            try {
+                const { data } = await API.get(`/agenda/patients/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                setInfos(data.agenda[0])
+                setPatients(data.patients)
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+
+        loadAgenda(id)
+
+    }, [])
     return (
         <div>
             <IconButton
@@ -40,7 +64,7 @@ export default function PreviewModal({ infos }) {
             >
                 <Icon icon='tabler:eye' />
             </IconButton>
-            <Modal
+            {infos && <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
                 open={open}
@@ -55,11 +79,14 @@ export default function PreviewModal({ infos }) {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                        <ScheduleInfos infos={infos} />
-                        <ScheduledPatients />
+                        <CloseIcon sx={closeIconStyle} onClick={handleClose} />
+                        <Box sx={{ display: 'flex', gap: 5 }} >
+                            <ScheduleInfos infos={infos} modal={true} />
+                            <ScheduledPatients patients={patients} modal={true} />
+                        </Box>
                     </Box>
                 </Fade>
-            </Modal>
+            </Modal>}
         </div>
     );
 }

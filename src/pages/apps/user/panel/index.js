@@ -247,7 +247,7 @@ const UserPanel = () => {
       minWidth: 140,
       sortable: false,
       field: 'actions',
-      headerName: 'Actions',
+      headerName: 'Opções',
       renderCell: ({ row }) => (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Tooltip title='Delete Invoice'>
@@ -260,7 +260,7 @@ const UserPanel = () => {
             </IconButton>
           </Tooltip>
           <Tooltip title='View'>
-            <PreviewModal infos={row} />
+            <PreviewModal id={row.agenda_id} />
           </Tooltip>
           <OptionsMenu
             menuProps={{ sx: { '& .MuiMenuItem-root svg': { mr: 2 } } }}
@@ -270,9 +270,17 @@ const UserPanel = () => {
                 text: 'Download',
                 icon: <Icon icon='tabler:download' fontSize={20} />
               },
+              // {
+              //   text: 'Edit',
+              //   href: {
+              //     pathname: `/apps/invoice/edit/`,
+              //     query: { id: row.agenda_id }
+              //   },
+              //   icon: <Icon icon='tabler:edit' fontSize={20} />
+              // },
               {
                 text: 'Edit',
-                href: `/apps/invoice/edit/${row.id}`,
+                href: `/apps/user/edit-schedule/${row.agenda_id}`,
                 icon: <Icon icon='tabler:edit' fontSize={20} />
               },
               {
@@ -322,7 +330,7 @@ const UserPanel = () => {
                       <CustomInput
                         dates={dates}
                         setDates={setDates}
-                        label='Invoice Date'
+                        label='Data da agenda'
                         end={endDateRange}
                         start={startDateRange}
                       />

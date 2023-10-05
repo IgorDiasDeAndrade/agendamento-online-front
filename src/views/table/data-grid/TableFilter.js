@@ -155,7 +155,7 @@ const TableColumns = () => {
 
   return (
     <Card>
-      <CardHeader title='Quick Filter' />
+      <CardHeader title='Pacientes' />
       <DataGrid
         autoHeight
         columns={columns}
