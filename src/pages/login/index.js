@@ -86,8 +86,8 @@ const schema = yup.object().shape({
 })
 
 const defaultValues = {
-  password: 'example',
-  email: 'example@email.com'
+  password: '',
+  email: ''
 }
 
 const LoginPage = () => {
@@ -120,7 +120,7 @@ const LoginPage = () => {
     auth.login({ email, password, rememberMe }, () => {
       setError('email', {
         type: 'manual',
-        message: 'Email or Password is invalid'
+        message: 'Email ou Senha inválida!'
       })
     })
   }
@@ -224,9 +224,9 @@ const LoginPage = () => {
                       value={value}
                       onBlur={onBlur}
                       onChange={onChange}
-                      placeholder='admin@vuexy.com'
+                      placeholder='exemplo@email.com'
                       error={Boolean(errors.email)}
-                      {...(errors.email && { helperText: errors.email.message })}
+                      {...(errors.email && { helperText: "email é obrigatório!" })}
                     />
                   )}
                 />
@@ -245,7 +245,7 @@ const LoginPage = () => {
                       onChange={onChange}
                       id='auth-login-v2-password'
                       error={Boolean(errors.password)}
-                      {...(errors.password && { helperText: errors.password.message })}
+                      {...(errors.password && { helperText: "senha deve conter ao menos 5 caracteres!" })}
                       type={showPassword ? 'text' : 'password'}
                       InputProps={{
                         endAdornment: (

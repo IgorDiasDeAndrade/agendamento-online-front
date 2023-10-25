@@ -7,11 +7,13 @@ import Edit from 'src/views/apps/invoice/edit/Edit'
 // ** Styled Component
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 
+
 const InvoiceEdit = ({ id }) => {
   return (
-    <DatePickerWrapper sx={{ '& .react-datepicker-wrapper': { width: 'auto' } }}>
-      <Edit id={id} />
-    </DatePickerWrapper>
+    // <DatePickerWrapper sx={{ '& .react-datepicker-wrapper': { width: 'auto' } }}>
+    //   <Edit id={id} />
+    // </DatePickerWrapper>
+    <h1>teste</h1>
   )
 }
 
@@ -25,15 +27,28 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 
-export const getStaticProps = ({ params }) => {
+// export const getStaticProps = async ({ params }) => {
+//   console.log(params)
+//   return {
+//     props: {
+//       id: params?.id
+//     }
+//   }
+// }
+
+
+export async function getStaticProps(context) {
+  const { params } = context;
+  const id = params.id;
+
+  const data = id
+
   return {
-    props: {
-      id: params?.id
-    }
+    props: data,
   }
 }
 

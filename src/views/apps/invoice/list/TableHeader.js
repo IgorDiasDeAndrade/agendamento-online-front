@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem'
 
 // ** Custom Component Import
 import CustomTextField from 'src/@core/components/mui/text-field'
+import AddPatient from 'src/pages/apps/user/add-patient'
 
 const TableHeader = props => {
   // ** Props
@@ -43,7 +44,7 @@ const TableHeader = props => {
         <MenuItem value='Send'>Send</MenuItem>
       </CustomTextField>
 
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 2 }}>
         <CustomTextField
           value={value}
           sx={{ mr: 4, mb: 2 }}
@@ -53,6 +54,7 @@ const TableHeader = props => {
         <Button sx={{ mb: 2 }} component={Link} variant='contained' href='/apps/user/add-agenda'>
           Criar agenda
         </Button>
+        <AddPatient />
       </Box>
     </Box>
   )

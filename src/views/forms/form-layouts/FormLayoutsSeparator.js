@@ -27,6 +27,8 @@ import { API } from 'src/configs/auth'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
+import { redirect } from 'next/navigation'
+import { Router, useRouter } from 'next/router'
 
 const CustomInput = forwardRef((props, ref) => {
   return <CustomTextField fullWidth {...props} inputRef={ref} label='Data da agenda' autoComplete='off' />
@@ -37,6 +39,7 @@ const FormLayoutsSeparator = () => {
   const [date, setDate] = useState(null)
   const [start_time, setStartTime] = useState(null)
   const [end_time, setEndTime] = useState(null)
+  const router = useRouter();
 
   const [form, setForm] = useState({
     agenda_name: '',
@@ -75,10 +78,15 @@ const FormLayoutsSeparator = () => {
           Authorization: `Bearer ${token}`
         }
       })
-      console.log(response)
+
+      if (response) {
+        router.push('/apps/user/panel/')
+      }
+
     } catch (error) {
       console.error('Erro ao enviar os dados:', error)
     }
+
   }
 
   return (

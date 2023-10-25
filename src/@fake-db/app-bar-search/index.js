@@ -60,7 +60,7 @@ const searchData = [
   },
   {
     id: 9,
-    url: '/apps/invoice/edit',
+    url: '/apps/user/edit-schedule/[id]',
     icon: 'tabler:file-pencil',
     title: 'Invoice Edit',
     category: 'appsPages'

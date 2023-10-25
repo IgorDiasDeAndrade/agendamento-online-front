@@ -41,6 +41,7 @@ import CustomTextField from 'src/@core/components/mui/text-field'
 // ** Styled Components
 import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 import { setCurrentUser } from 'src/store/apps/currentUser'
+import PreviewModal from './schedulePreview'
 
 // ** Styled component for the link in the dataTable
 const LinkStyled = styled(Link)(({ theme }) => ({
@@ -246,7 +247,7 @@ const UserPanel = () => {
       minWidth: 140,
       sortable: false,
       field: 'actions',
-      headerName: 'Actions',
+      headerName: 'Opções',
       renderCell: ({ row }) => (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Tooltip title='Delete Invoice'>
@@ -259,14 +260,7 @@ const UserPanel = () => {
             </IconButton>
           </Tooltip>
           <Tooltip title='View'>
-            <IconButton
-              size='small'
-              component={Link}
-              sx={{ color: 'text.secondary' }}
-              href={`/apps/invoice/preview/${row.agenda_id}`}
-            >
-              <Icon icon='tabler:eye' />
-            </IconButton>
+            <PreviewModal id={row.agenda_id} />
           </Tooltip>
           <OptionsMenu
             menuProps={{ sx: { '& .MuiMenuItem-root svg': { mr: 2 } } }}
@@ -276,9 +270,17 @@ const UserPanel = () => {
                 text: 'Download',
                 icon: <Icon icon='tabler:download' fontSize={20} />
               },
+              // {
+              //   text: 'Edit',
+              //   href: {
+              //     pathname: `/apps/invoice/edit/`,
+              //     query: { id: row.agenda_id }
+              //   },
+              //   icon: <Icon icon='tabler:edit' fontSize={20} />
+              // },
               {
                 text: 'Edit',
-                href: `/apps/invoice/edit/${row.id}`,
+                href: `/apps/user/edit-schedule/${row.agenda_id}`,
                 icon: <Icon icon='tabler:edit' fontSize={20} />
               },
               {
@@ -287,7 +289,7 @@ const UserPanel = () => {
               }
             ]}
           />
-        </Box>
+        </Box >
       )
     }
   ]
@@ -328,7 +330,7 @@ const UserPanel = () => {
                       <CustomInput
                         dates={dates}
                         setDates={setDates}
-                        label='Invoice Date'
+                        label='Data da agenda'
                         end={endDateRange}
                         start={startDateRange}
                       />

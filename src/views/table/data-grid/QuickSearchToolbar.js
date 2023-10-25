@@ -21,10 +21,10 @@ const QuickSearchToolbar = props => {
         p: theme => theme.spacing(2, 5, 4, 5)
       }}
     >
-      <GridToolbarFilterButton />
+      {/* <GridToolbarFilterButton /> */}
       <CustomTextField
         value={props.value}
-        placeholder='Search…'
+        placeholder='Procurar'
         onChange={props.onChange}
         InputProps={{
           startAdornment: (
